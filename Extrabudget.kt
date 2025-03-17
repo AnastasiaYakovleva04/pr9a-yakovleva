@@ -6,20 +6,26 @@ class Extrabudget: Student() {
 
     override fun Input() {
         try {
-            print("Введите количество курсов:")
+            print("Введите количество курсов: ")
             qCourses = readln().toUInt()
-            print("Введите текущий курс:")
+            print("Введите текущий курс: ")
             currentCourse = readln().toUInt()
-            print("Введите сколько уже оплачено:")
+            print("Введите оплаченную сумму: ")
             payed = readln().toDouble()
-            if (payed < 0.0)
-                println("Неверный ввод")
         }
-        catch (e: Exception)
-        {
+        catch (e:Exception){
             println("Неверный формат данных")
         }
     }
+
+    //Перегрузка функции вывода информации о студенте
+    override fun Info(): String {
+        if (correct)
+            return super.Info() + " Оплачено $payed руб за обучение"
+        else
+            return ""
+    }
+
     //Расчет полной оплаты обучения
     fun TotalPay(): Double{
         val total = qCourses.toDouble() * paymentForYear
@@ -32,4 +38,5 @@ class Extrabudget: Student() {
         else
             return true
     }
+
 }
